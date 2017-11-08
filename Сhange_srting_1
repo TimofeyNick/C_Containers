@@ -1,0 +1,44 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+#include <map>
+using namespace std;
+
+int main() {
+    int n;
+    string s;
+    cin >> n;
+    vector<string> p;
+    int pos = 0;
+    int len_1 = 0;
+    for(unsigned i = 0; i < n; i++){
+        cin >> s;
+        len_1 = s.length();
+        for(int i = 0; i < len_1; i++)
+        {
+           char current_num;
+           current_num = s[pos];
+           if (current_num >= 65 && current_num <= 91){
+               current_num = current_num + 32;
+               s[pos] = current_num;
+           }
+           else{
+               s[pos] = current_num;
+           }
+           pos = pos + 1;
+       }
+       p.push_back(s);
+       pos = 0;
+    }
+
+    sort(p.begin(), p.end());
+
+    p.erase(unique(p.begin(),p.end()),p.end());
+
+    reverse(p.begin(), p.end());
+
+    for(vector<string>::iterator j = p.begin(); j != p.end(); j++){
+        cout << *j << " ";
+    }
+}
