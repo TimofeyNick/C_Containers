@@ -1,0 +1,56 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+#include <map>
+#include <cmath>
+using namespace std;
+
+int main() {
+    vector<int> p;
+    int cur_number = 0;
+    int len_vector = 0;
+    int vertex = 0;
+    int cur_number_abs = 0;
+    cin >> cur_number;
+    while(cur_number != 0){
+        if(cur_number > 0){
+            p.push_back(cur_number);
+            len_vector++;
+        }
+        else{
+            cur_number_abs = abs(cur_number);
+            if (len_vector > 0){
+                vertex = p.back();
+                len_vector--;
+                p.pop_back();
+            }
+            else{
+                vertex = 0;
+            }
+            if (cur_number_abs < vertex){
+                vertex = vertex - cur_number_abs;
+                p.push_back(vertex);
+                len_vector++;
+            }
+          }
+
+         cin >> cur_number;
+    }
+//    reverse(p.begin(), p.end());
+//    for(vector<int>::iterator j = p.begin(); j != p.end(); j++){
+//           cout << *j << " ";
+//    }
+
+    if(len_vector > 0){
+        cout << len_vector << " ";
+        cout << p.back();
+    }
+    else{
+        cout << "0" << " ";
+        cout << "-1";
+    }
+
+    p.clear();
+    p.shrink_to_fit();
+}
